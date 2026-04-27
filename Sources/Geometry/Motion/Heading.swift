@@ -45,7 +45,6 @@ public struct Heading {
     }
 }
 
-
 #if canImport(CoreLocation)
 import CoreLocation
 

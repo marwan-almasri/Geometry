@@ -57,7 +57,7 @@ public extension Accuracy {
 }
 
 // CMMotionActivity is only available on macOS 15.0+
-@available(iOS 7.0, macOS 15.0, watchOS 2.0, tvOS 9.0, *)
+@available(macOS 15.0, *)
 public extension Accuracy {
 
     /// Initializes `Accuracy` from `CMMotionActivityConfidence`.

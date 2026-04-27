@@ -42,7 +42,7 @@ public enum MotionActivityStatus: CustomStringConvertible {
 #if canImport(CoreMotion)
 import CoreMotion
 
-@available(iOS 7.0, macOS 15.0, watchOS 2.0, tvOS 9.0, *)
+@available(macOS 15.0, *)
 public extension MotionActivityStatus {
 
     /// Initializes a `MotionActivityStatus` from a `CMMotionActivity` object.

@@ -46,8 +46,8 @@ public struct Rotation3D {
     }
 
     public var description: String {
-        String(format: "Rotation3D[roll: %.2f, pitch: %.2f, yaw: %.2f]",
-                      Float(roll.degrees), Float(pitch.degrees), Float(yaw.degrees))
+        let fmt = "Rotation3D[roll: %.2f, pitch: %.2f, yaw: %.2f]"
+        return String(format: fmt, Float(roll.degrees), Float(pitch.degrees), Float(yaw.degrees))
     }
 }
 

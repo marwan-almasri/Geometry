@@ -167,10 +167,11 @@ extension Vector3D {
     /// - Parameter right: Rotation3D object represents the right side.
     /// - Returns: a `Vector3D` object represents the result.
     public static func ^ (left: Vector3D, right: Rotation3D) -> Vector3D {
+        let rm: RotationMatrix = right.rotationMatrix
         return Vector3D(
-            x: left.x * right.rotationMatrix.m11 + left.y * right.rotationMatrix.m12 + left.z * right.rotationMatrix.m13,
-            y: left.x * right.rotationMatrix.m21 + left.y * right.rotationMatrix.m22 + left.z * right.rotationMatrix.m23,
-            z: left.x * right.rotationMatrix.m31 + left.y * right.rotationMatrix.m32 + left.z * right.rotationMatrix.m33
+            x: left.x * rm.m11 + left.y * rm.m12 + left.z * rm.m13,
+            y: left.x * rm.m21 + left.y * rm.m22 + left.z * rm.m23,
+            z: left.x * rm.m31 + left.y * rm.m32 + left.z * rm.m33
         )
     }
 }
