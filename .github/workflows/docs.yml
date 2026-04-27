@@ -1,0 +1,50 @@
+name: Documentation
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:        # allow manual runs from the Actions tab
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one deploy can run at a time; cancel any in-progress run on new push.
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  # ─── Generate docs with Jazzy ────────────────────────────────────────────────
+  build:
+    name: Build docs
+    runs-on: macos-15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Jazzy
+        run: gem install jazzy --no-document
+
+      - name: Generate documentation
+        run: jazzy
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  # ─── Deploy to GitHub Pages ──────────────────────────────────────────────────
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

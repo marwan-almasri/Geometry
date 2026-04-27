@@ -1,0 +1,52 @@
+module: Geometry
+module_version: "1.0.0"
+swift_build_tool: spm
+clean: true
+output: docs
+theme: fullwidth
+
+author: Marwan Al Masri
+author_url: https://github.com/marwan-almasri
+github_url: https://github.com/marwan-almasri/Geometry
+github_file_prefix: https://github.com/marwan-almasri/Geometry/tree/main
+
+min_acl: public
+skip_undocumented: false
+hide_documentation_coverage: false
+
+custom_categories:
+  - name: Math
+    children:
+      - Angle
+      - Accuracy
+      - Direction
+      - NumericalIntegration
+      - infinity
+      - clamp(value:min:max:)
+      - rotate(value:min:max:)
+      - truncate(value:decimalPlaces:)
+      - lerp(from:to:t:)
+      - inverseLerp(from:to:value:)
+      - map(value:from:to:)
+      - sign(_:)
+      - normalize(value:min:max:)
+      - wrap(_:min:max:)
+  - name: Vector
+    children:
+      - Vector3D
+      - CartesianVector
+      - SphericalVector
+      - CylindricalVector
+  - name: Rotation
+    children:
+      - EulerAngles
+      - Quaternion
+      - RotationMatrix
+      - Rotation3D
+  - name: Motion
+    children:
+      - Heading
+      - MagneticField
+      - Motion
+      - MotionActivity
+      - MotionActivityStatus

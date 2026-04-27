@@ -1,0 +1,40 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # ─── Build & Test ────────────────────────────────────────────────────────────
+  test:
+    name: swift test — ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-15]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build
+        run: swift build --configuration release
+
+      - name: Test
+        run: swift test --configuration debug
+
+  # ─── SwiftLint ───────────────────────────────────────────────────────────────
+  lint:
+    name: SwiftLint
+    runs-on: macos-15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install SwiftLint
+        run: brew install swiftlint
+
+      - name: Lint
+        run: swiftlint lint --strict --config .swiftlint.yml
