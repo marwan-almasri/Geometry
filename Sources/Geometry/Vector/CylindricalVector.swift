@@ -29,11 +29,8 @@ public struct CylindricalVector: CustomStringConvertible {
     /// The equivalent vector in Cartesian coordinates.
     ///
     /// Calculated as:
-    /// ```
-    /// x = ρ × cos(ϕ)
-    /// y = ρ × sin(ϕ)
-    /// z = z
-    /// ```
+    ///
+    /// ![Equation](https://latex.codecogs.com/png.latex?%5Cbegin%7Baligned%7Dx%26%3D%5Crho%5Ccos%5Cphi%5C%5Cy%26%3D%5Crho%5Csin%5Cphi%5C%5Cz%26%3Dz%5Cend%7Baligned%7D)
     public var cartesianVector: CartesianVector {
         let x = rho * cos(phi)
         let y = rho * sin(phi)
@@ -45,11 +42,10 @@ public struct CylindricalVector: CustomStringConvertible {
     /// The equivalent vector in spherical coordinates.
     ///
     /// Calculated as:
-    /// ```
-    /// r = √(ρ² + z²)
-    /// θ = arccos(z / r)   — undefined for the zero vector; returns SphericalVector() instead
-    /// ϕ = ϕ
-    /// ```
+    ///
+    /// ![Equation](https://latex.codecogs.com/png.latex?%5Cbegin%7Baligned%7Dr%26%3D%5Csqrt%7B%5Crho%5E2%2Bz%5E2%7D%5C%5C%5Ctheta%26%3D%5Carccos%28z%2Fr%29%5C%5C%5Cphi%26%3D%5Cphi%5Cend%7Baligned%7D)
+    ///
+    /// - Attention: Undefined for the zero vector; returns `SphericalVector()` instead.
     public var sphericalVector: SphericalVector {
         let radial = sqrt(rho * rho + height * height)
         guard radial > 0 else { return SphericalVector() }

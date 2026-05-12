@@ -3,9 +3,12 @@ import Foundation
 /// Represents a quaternion, a mathematical construct used to encode 3D rotations.
 ///
 /// If `q` is an instance of `Quaternion`, it is represented as:
-/// _q = xi + yj + zk + w_
 ///
-/// Where: _i² = j² = k² = ijk = −1_
+/// ![Equation](https://latex.codecogs.com/png.latex?q%3Dx%5Cmathbf%7Bi%7D%2By%5Cmathbf%7Bj%7D%2Bz%5Cmathbf%7Bk%7D%2Bw)
+///
+/// Where:
+///
+/// ![Equation](https://latex.codecogs.com/png.latex?%5Cmathbf%7Bi%7D%5E2%3D%5Cmathbf%7Bj%7D%5E2%3D%5Cmathbf%7Bk%7D%5E2%3D%5Cmathbf%7Bi%7D%5Cmathbf%7Bj%7D%5Cmathbf%7Bk%7D%3D-1)
 public struct Quaternion: CustomStringConvertible {
 
     /// Projection of the quaternion’s unity vector on the x-axis.

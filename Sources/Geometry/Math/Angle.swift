@@ -20,7 +20,8 @@ public struct Angle {
     /// Degrees represent a measurement of plane angle, where one full rotation is 360 degrees.
     ///
     /// Computed using the formula:
-    /// degree = radian × (180 / π)
+    ///
+    /// ![Equation](https://latex.codecogs.com/png.latex?%5Ctext%7Bdegrees%7D%3D%5Ctext%7Bradians%7D%5Ctimes%5Cfrac%7B180%7D%7B%5Cpi%7D)
     public var degrees: Double { radians * 180 / .pi }
 
     /// Creates an angle from a value in radians.

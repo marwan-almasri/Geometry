@@ -21,11 +21,10 @@ public struct CartesianVector: CustomStringConvertible {
     /// The equivalent vector in spherical coordinates.
     ///
     /// Calculated as:
-    /// ```
-    /// r = √(x² + y² + z²)
-    /// θ = arccos(z / r)   — undefined for the zero vector; returns SphericalVector() instead
-    /// ϕ = atan2(y, x)
-    /// ```
+    ///
+    /// ![Equation](https://latex.codecogs.com/png.latex?%5Cbegin%7Baligned%7Dr%26%3D%5Csqrt%7Bx%5E2%2By%5E2%2Bz%5E2%7D%5C%5C%5Ctheta%26%3D%5Carccos%28z%2Fr%29%5C%5C%5Cphi%26%3D%5Coperatorname%7Batan2%7D%28y%2Cx%29%5Cend%7Baligned%7D)
+    ///
+    /// - Attention: Undefined for the zero vector; returns `SphericalVector()` instead.
     public var sphericalVector: SphericalVector {
         let radial = sqrt(x * x + y * y + z * z)
         guard radial > 0 else { return SphericalVector() }
@@ -38,11 +37,8 @@ public struct CartesianVector: CustomStringConvertible {
     /// The equivalent vector in cylindrical coordinates.
     ///
     /// Calculated as:
-    /// ```
-    /// ρ = √(x² + y²)
-    /// ϕ = atan2(y, x)
-    /// z = z
-    /// ```
+    ///
+    /// ![Equation](https://latex.codecogs.com/png.latex?%5Cbegin%7Baligned%7D%5Crho%26%3D%5Csqrt%7Bx%5E2%2By%5E2%7D%5C%5C%5Cphi%26%3D%5Coperatorname%7Batan2%7D%28y%2Cx%29%5C%5Cz%26%3Dz%5Cend%7Baligned%7D)
     public var cylindricalVector: CylindricalVector {
         let rho = sqrt(x * x + y * y)
         let phi = atan2(y, x).angle

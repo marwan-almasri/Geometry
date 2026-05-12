@@ -32,11 +32,8 @@ public struct SphericalVector: CustomStringConvertible {
     /// The equivalent vector in Cartesian coordinates.
     ///
     /// Calculated as:
-    /// ```
-    /// x = r × sin(θ) × cos(ϕ)
-    /// y = r × sin(θ) × sin(ϕ)
-    /// z = r × cos(θ)
-    /// ```
+    ///
+    /// ![Equation](https://latex.codecogs.com/png.latex?%5Cbegin%7Baligned%7Dx%26%3Dr%5Csin%5Ctheta%5Ccos%5Cphi%5C%5Cy%26%3Dr%5Csin%5Ctheta%5Csin%5Cphi%5C%5Cz%26%3Dr%5Ccos%5Ctheta%5Cend%7Baligned%7D)
     public var cartesianVector: CartesianVector {
         let x = radial * sin(theta) * cos(phi)
         let y = radial * sin(theta) * sin(phi)
@@ -48,11 +45,8 @@ public struct SphericalVector: CustomStringConvertible {
     /// The equivalent vector in cylindrical coordinates.
     ///
     /// Calculated as:
-    /// ```
-    /// ρ = r × sin(θ)
-    /// ϕ = ϕ
-    /// z = r × cos(θ)
-    /// ```
+    ///
+    /// ![Equation](https://latex.codecogs.com/png.latex?%5Cbegin%7Baligned%7D%5Crho%26%3Dr%5Csin%5Ctheta%5C%5C%5Cphi%26%3D%5Cphi%5C%5Cz%26%3Dr%5Ccos%5Ctheta%5Cend%7Baligned%7D)
     public var cylindricalVector: CylindricalVector {
         let rho = radial * sin(theta)
         let z = radial * cos(theta)

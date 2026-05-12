@@ -18,12 +18,12 @@ public struct RotationMatrix: CustomStringConvertible {
     /// Converts the rotation matrix to Euler angles.
     ///
     /// Inverts the convention used by `EulerAngles.rotationMatrix`:
-    /// `R = Rx(roll) · Ry(pitch) · Rz(yaw)`
     ///
-    /// Extraction formulas (derived from the forward formula):
-    /// - `roll  = atan2(-m13, √(m11² + m12²))`   from `m13 = -sin(roll)`
-    /// - `yaw   = atan2(m12, m11)`                 from `m11 = cos(roll)·cos(yaw)`, `m12 = cos(roll)·sin(yaw)`
-    /// - `pitch = atan2(m23, m33)`                 from `m23 = cos(roll)·sin(pitch)`, `m33 = cos(roll)·cos(pitch)`
+    /// ![Equation](https://latex.codecogs.com/png.latex?R%3DR_x%28%5Ctext%7Broll%7D%29%5Ccdot%20R_y%28%5Ctext%7Bpitch%7D%29%5Ccdot%20R_z%28%5Ctext%7Byaw%7D%29)
+    ///
+    /// Extraction formulas (derived from `m13 = -sin(roll)`, `m11 = cos(roll)·cos(yaw)`, `m23 = cos(roll)·sin(pitch)`, etc.):
+    ///
+    /// ![Equation](https://latex.codecogs.com/png.latex?%5Cbegin%7Baligned%7D%5Ctext%7Broll%7D%26%3D%5Coperatorname%7Batan2%7D%28-m_%7B13%7D%2C%5Csqrt%7Bm_%7B11%7D%5E2%2Bm_%7B12%7D%5E2%7D%29%5C%5C%5Ctext%7Byaw%7D%26%3D%5Coperatorname%7Batan2%7D%28m_%7B12%7D%2Cm_%7B11%7D%29%5C%5C%5Ctext%7Bpitch%7D%26%3D%5Coperatorname%7Batan2%7D%28m_%7B23%7D%2Cm_%7B33%7D%29%5Cend%7Baligned%7D)
     ///
     /// **Gimbal lock** (roll ≈ ±π/2, `cos(roll) ≈ 0`): only `(pitch − yaw)` or `(pitch + yaw)` is
     /// recoverable. By convention `yaw` is set to zero and `pitch` absorbs the coupled value:
@@ -57,7 +57,8 @@ public struct RotationMatrix: CustomStringConvertible {
     /// Converts the rotation matrix to a quaternion.
     ///
     /// Uses the Cayley–Klein (Shepperd) formula:
-    /// `w = ½√(1 + tr(R))`,  `x = (m23−m32)/(4w)`,  `y = (m31−m13)/(4w)`,  `z = (m12−m21)/(4w)`
+    ///
+    /// ![Equation](https://latex.codecogs.com/png.latex?w%3D%5Ctfrac%7B1%7D%7B2%7D%5Csqrt%7B1%2B%5Coperatorname%7Btr%7D%28R%29%7D%2C%5Cquad%20x%3D%5Cfrac%7Bm_%7B23%7D-m_%7B32%7D%7D%7B4w%7D%2C%5Cquad%20y%3D%5Cfrac%7Bm_%7B31%7D-m_%7B13%7D%7D%7B4w%7D%2C%5Cquad%20z%3D%5Cfrac%7Bm_%7B12%7D-m_%7B21%7D%7D%7B4w%7D)
     ///
     /// The `max(0, …)` guard prevents a negative radicand from floating-point drift near θ = 0.
     public var quaternion: Quaternion {
