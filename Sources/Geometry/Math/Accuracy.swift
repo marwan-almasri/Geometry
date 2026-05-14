@@ -59,7 +59,6 @@ public extension Accuracy {
 }
 
 /// Core Motion extensions mapping `CMMotionActivityConfidence` to `Accuracy` (macOS 15.0+).
-// CMMotionActivity is only available on macOS 15.0+
 @available(macOS 15.0, *)
 public extension Accuracy {
 

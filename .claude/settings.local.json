@@ -23,7 +23,10 @@
       "Bash(git -C /Users/maralmasri/Developer/Private/Geometry status --short)",
       "Bash(python3 -c \"import json,sys; data=json.load\\(sys.stdin\\); [print\\(w['file'].split\\('/'\\)[-1], w['symbol'], w['symbol_kind']\\) for w in data.get\\('warnings',[]\\)]\")",
       "Bash(python3 -c ' *)",
-      "Bash(python3 *)"
+      "Bash(python3 *)",
+      "Bash(xargs ls)",
+      "Bash(swift test *)",
+      "Bash(swiftlint lint *)"
     ]
   }
 }

@@ -259,7 +259,6 @@ extension Vector3D {
 #if canImport(CoreMotion)
 import CoreMotion
 
-/// Core Motion extensions for constructing a `Vector3D` from acceleration, rotation rate, and magnetic field data.
 public extension Vector3D {
 
     /// Initializes a `Vector3D` from a `CMAcceleration`, converting from g-units to m/s².
@@ -291,7 +290,6 @@ public extension Vector3D {
 #if canImport(CoreLocation)
 import CoreLocation
 
-/// Core Location extension for constructing a `Vector3D` from a `CLHeading` magnetic field.
 public extension Vector3D {
 
     /// Initializes a `Vector3D` from the raw field values of a `CLHeading`.
