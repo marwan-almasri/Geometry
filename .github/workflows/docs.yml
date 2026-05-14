@@ -27,6 +27,9 @@ jobs:
       - name: Install Jazzy
         run: gem install jazzy --no-document
 
+      - name: Build Swift module
+        run: swift build
+
       - name: Generate documentation
         run: jazzy
 

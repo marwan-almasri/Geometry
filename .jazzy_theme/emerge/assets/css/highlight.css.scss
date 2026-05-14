@@ -1,0 +1,63 @@
+/*! Geometry Docs — Space Theme — Syntax Highlighting (dark)
+ *  Palette: atom-one-dark / space inspired
+ */
+
+pre.highlight, .highlight pre {
+  background: rgba(0, 0, 0, 0.5) !important;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+}
+
+.highlight {
+  // Base text
+  color: #abb2bf;
+
+  // Whitespace
+  .w  { color: #abb2bf; }
+
+  // Comments
+  .c, .ch, .cm, .cpf, .c1, .cs { color: #5c6370; font-style: italic; }
+
+  // Preprocessor / keyword
+  .cp { color: #c678dd; font-weight: bold; }
+  .k, .kc, .kd, .kn, .kp, .kr { color: #c678dd; }
+  .kt { color: #e5c07b; }
+
+  // Operators
+  .o, .ow { color: #56b6c2; }
+
+  // Identifiers
+  .n  { color: #abb2bf; }
+  .na { color: #e06c75; }
+  .nb { color: #56b6c2; }
+  .nc { color: #e5c07b; }
+  .nd { color: #61afef; }
+  .ne { color: #e06c75; }
+  .nf, .fm { color: #61afef; }
+  .nn { color: #e5c07b; }
+  .nt { color: #e06c75; }
+  .nv, .vc, .vg, .vi, .vm { color: #e06c75; }
+
+  // Literals
+  .l  { color: #d19a66; }
+  .ld { color: #98c379; }
+  .s, .sa, .sb, .sc, .dl, .sd, .s2, .se, .sh, .si, .sx, .sr, .s1, .ss { color: #98c379; }
+  .m, .mb, .mf, .mh, .mi, .mo, .mx { color: #d19a66; }
+
+  // Punctuation
+  .p, .pi { color: #abb2bf; }
+
+  // Generic
+  .ge { font-style: italic; }
+  .gs { font-weight: bold; }
+  .gl { text-decoration: underline; }
+  .gp { color: #5c6370; font-weight: bold; }
+  .go { color: #636d83; }
+  .gr { color: #e06c75; }
+  .gh { color: #61afef; font-weight: bold; }
+  .gu { color: #c678dd; font-weight: bold; }
+  .gt { color: #e06c75; }
+
+  // Error
+  .err { color: #e06c75; background: none; }
+}

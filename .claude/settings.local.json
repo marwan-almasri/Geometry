@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gem contents *)",
+      "Bash(mkdir -p /Users/maralmasri/Developer/Private/Geometry/.jazzy_theme/emerge/templates /Users/maralmasri/Developer/Private/Geometry/.jazzy_theme/emerge/assets/css /Users/maralmasri/Developer/Private/Geometry/.jazzy_theme/emerge/assets/js /Users/maralmasri/Developer/Private/Geometry/.jazzy_theme/emerge/assets/img)",
+      "Bash(cp __TRACKED_VAR__/assets/js/jquery.min.js /Users/maralmasri/Developer/Private/Geometry/.jazzy_theme/emerge/assets/js/)",
+      "Bash(cp __TRACKED_VAR__/assets/js/lunr.min.js /Users/maralmasri/Developer/Private/Geometry/.jazzy_theme/emerge/assets/js/)",
+      "Bash(cp __TRACKED_VAR__/assets/js/typeahead.jquery.js /Users/maralmasri/Developer/Private/Geometry/.jazzy_theme/emerge/assets/js/)",
+      "Bash(cp __TRACKED_VAR__/assets/js/jazzy.js /Users/maralmasri/Developer/Private/Geometry/.jazzy_theme/emerge/assets/js/)",
+      "Bash(jazzy --swift-build-tool-arguments \"-Xswiftc -target -Xswiftc arm64-apple-macosx12.0\")",
+      "Bash(jazzy --swift-build-tool xcodebuild)",
+      "Bash(sourcekitten doc *)",
+      "Bash(gem list *)",
+      "Bash(/Users/maralmasri/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/jazzy-0.14.4/bin/sourcekitten doc *)",
+      "Bash(swift build *)",
+      "Bash(/Users/maralmasri/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/jazzy-0.14.4/bin/sourcekitten version *)",
+      "Bash(ln -sf Modules/Geometry.swiftmodule .build/debug/Geometry.swiftmodule)",
+      "Bash(jazzy)",
+      "Bash(jazzy --help)",
+      "Bash(jazzy --swift-build-tool symbolgraph)",
+      "Bash(jazzy --swift-build-tool symbolgraph --build-tool-arguments -I,.build/debug/Modules)",
+      "Bash(open *)",
+      "Bash(git -C /Users/maralmasri/Developer/Private/Geometry status --short)"
+    ]
+  }
+}

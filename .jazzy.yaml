@@ -1,9 +1,12 @@
 module: Geometry
 module_version: "1.0.0"
-swift_build_tool: spm
+swift_build_tool: symbolgraph
+build_tool_arguments:
+  - -I
+  - .build/debug/Modules
 clean: true
 output: docs
-theme: fullwidth
+theme: .jazzy_theme/emerge
 
 author: Marwan Al Masri
 author_url: https://github.com/marwan-almasri
