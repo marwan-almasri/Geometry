@@ -23,6 +23,7 @@ public struct MotionActivity {
         self.confidence = confidence
     }
 
+    /// A human-readable description showing the status and confidence level.
     public var description: String {
         "\(status) confidence \(confidence)"
     }
@@ -31,6 +32,7 @@ public struct MotionActivity {
 #if canImport(CoreMotion)
 import CoreMotion
 
+/// Core Motion extension for constructing a `MotionActivity` from a `CMMotionActivity` (macOS 15.0+).
 @available(macOS 15.0, *)
 public extension MotionActivity {
 

@@ -28,6 +28,7 @@ public struct Motion {
 
     // MARK: - Description
 
+    /// A human-readable description of the motion.
     public var description: String {
         if distance == 0 {
             return "Motion \(direction) with weight \(weight)."
@@ -39,10 +40,12 @@ public struct Motion {
 
     // MARK: - Logical Operators
 
+    /// Returns `true` if both motions have the same direction.
     public static func == (lhs: Motion, rhs: Motion) -> Bool {
         return lhs.direction == rhs.direction
     }
 
+    /// Returns `true` if the two motions have different directions.
     public static func != (lhs: Motion, rhs: Motion) -> Bool {
         return lhs.direction != rhs.direction
     }

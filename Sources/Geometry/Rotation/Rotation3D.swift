@@ -45,6 +45,7 @@ public struct Rotation3D {
         rotationMatrix = eulerAngles.rotationMatrix
     }
 
+    /// A human-readable description of the rotation in degrees, e.g. `"Rotation3D[roll: 0.00, pitch: 0.00, yaw: 0.00]"`.
     public var description: String {
         let fmt = "Rotation3D[roll: %.2f, pitch: %.2f, yaw: %.2f]"
         return String(format: fmt, Float(roll.degrees), Float(pitch.degrees), Float(yaw.degrees))
@@ -54,35 +55,60 @@ public struct Rotation3D {
 // MARK: - Arithmetic Operators
 
 extension Rotation3D {
-    
+
+    /// Negates all three Euler angle components.
+    /// - Parameter rotation: The rotation to negate.
+    /// - Returns: A rotation with each axis angle negated.
     public static prefix func - (rotation: Rotation3D) -> Rotation3D {
         Rotation3D(roll: -rotation.roll, pitch: -rotation.pitch, yaw: -rotation.yaw)
     }
-    
+
+    /// Adds two rotations component-wise.
+    /// - Parameters:
+    ///   - left: The first rotation.
+    ///   - right: The second rotation.
+    /// - Returns: A rotation whose angles are the sums of the corresponding angles.
     public static func + (left: Rotation3D, right: Rotation3D) -> Rotation3D {
         Rotation3D(roll: left.roll + right.roll,
                    pitch: left.pitch + right.pitch,
                    yaw: left.yaw + right.yaw)
     }
-    
+
+    /// Subtracts one rotation from another component-wise.
+    /// - Parameters:
+    ///   - left: The base rotation.
+    ///   - right: The rotation to subtract.
+    /// - Returns: A rotation whose angles are the differences of the corresponding angles.
     public static func - (left: Rotation3D, right: Rotation3D) -> Rotation3D {
         left + -right
     }
-    
+
+    /// Adds a rotation to this rotation in place.
     public static func += (left: inout Rotation3D, right: Rotation3D) {
         left = left + right
     }
-    
+
+    /// Subtracts a rotation from this rotation in place.
     public static func -= (left: inout Rotation3D, right: Rotation3D) {
         left = left - right
     }
-    
+
+    /// Multiplies two rotations component-wise.
+    /// - Parameters:
+    ///   - left: The first rotation.
+    ///   - right: The second rotation.
+    /// - Returns: A rotation whose angles are the products of the corresponding angles.
     public static func * (left: Rotation3D, right: Rotation3D) -> Rotation3D {
         Rotation3D(roll: left.roll * right.roll,
                    pitch: left.pitch * right.pitch,
                    yaw: left.yaw * right.yaw)
     }
-    
+
+    /// Divides one rotation by another component-wise.
+    /// - Parameters:
+    ///   - left: The dividend rotation.
+    ///   - right: The divisor rotation.
+    /// - Returns: A rotation whose angles are the quotients of the corresponding angles.
     public static func / (left: Rotation3D, right: Rotation3D) -> Rotation3D {
         Rotation3D(roll: left.roll / right.roll,
                    pitch: left.pitch / right.pitch,
@@ -93,11 +119,13 @@ extension Rotation3D {
 // MARK: - Logical Operators
 
 extension Rotation3D {
-    
+
+    /// Returns `true` if all three angle components are equal.
     public static func == (left: Rotation3D, right: Rotation3D) -> Bool {
         (left.roll == right.roll) && (left.pitch == right.pitch) && (left.yaw == right.yaw)
     }
-    
+
+    /// Returns `true` if any angle component differs.
     public static func != (left: Rotation3D, right: Rotation3D) -> Bool {
         !(left == right)
     }
@@ -106,6 +134,7 @@ extension Rotation3D {
 #if canImport(CoreMotion)
 import CoreMotion
 
+/// Core Motion extension for constructing a `Rotation3D` from a `CMAttitude`.
 public extension Rotation3D {
 
     /// Initializes a `Rotation3D` using a `CMAttitude` from Core Motion.

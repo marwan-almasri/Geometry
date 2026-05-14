@@ -135,6 +135,7 @@ public struct Vector3D: CustomStringConvertible {
         cylindricalVector = cartesianVector.cylindricalVector
     }
     
+    /// A multi-line description showing all three coordinate representations.
     public var description: String {
         "Vector3D\n[\n\t\(cartesianVector)\n\t\(sphericalVector)\n\t\(cylindricalVector)\n]"
     }
@@ -179,31 +180,42 @@ extension Vector3D {
 // MARK: Arithmetic operators
 
 extension Vector3D {
-    
+
+    /// Negates all three Cartesian components.
     prefix static func - (vector: Vector3D) -> Vector3D {
         Vector3D(x: -vector.x, y: -vector.y, z: -vector.z)
     }
-    
+
+    /// Adds two vectors component-wise.
+    /// - Returns: A vector whose components are the sums of the corresponding components.
     public static func + (left: Vector3D, right: Vector3D) -> Vector3D {
         Vector3D(x: left.x + right.x, y: left.y + right.y, z: left.z + right.z)
     }
-    
+
+    /// Subtracts one vector from another component-wise.
+    /// - Returns: A vector whose components are the differences of the corresponding components.
     public static func - (left: Vector3D, right: Vector3D) -> Vector3D {
         left + -right
     }
-    
+
+    /// Adds a vector to this vector in place.
     public static func += (left: inout Vector3D, right: Vector3D) {
         left = left + right
     }
-    
+
+    /// Subtracts a vector from this vector in place.
     public static func -= (left: inout Vector3D, right: Vector3D) {
         left = left - right
     }
-    
+
+    /// Multiplies two vectors component-wise (Hadamard product).
+    /// - Returns: A vector whose components are the products of the corresponding components.
     public static func * (left: Vector3D, right: Vector3D) -> Vector3D {
         Vector3D(x: left.x * right.x, y: left.y * right.y, z: left.z * right.z)
     }
-    
+
+    /// Divides one vector by another component-wise.
+    /// - Returns: A vector whose components are the quotients of the corresponding components.
     public static func / (left: Vector3D, right: Vector3D) -> Vector3D {
         Vector3D(x: left.x / right.x, y: left.y / right.y, z: left.z / right.z)
     }
@@ -212,27 +224,33 @@ extension Vector3D {
 // MARK: Logical operators
 
 extension Vector3D {
-    
+
+    /// Returns `true` if all three Cartesian components are equal.
     public static func == (left: Vector3D, right: Vector3D) -> Bool {
         (left.x == right.x) && (left.y == right.y) && (left.z == right.z)
     }
-    
+
+    /// Returns `true` if any Cartesian component differs.
     public static func != (left: Vector3D, right: Vector3D) -> Bool {
         !(left == right)
     }
-    
+
+    /// Returns `true` if `left` has a magnitude less than or equal to `right`.
     public static func <= (left: Vector3D, right: Vector3D) -> Bool {
         (~left <= ~right)
     }
-    
+
+    /// Returns `true` if `left` has a magnitude greater than or equal to `right`.
     public static func >= (left: Vector3D, right: Vector3D) -> Bool {
         (~left >= ~right)
     }
-    
+
+    /// Returns `true` if `left` has a strictly smaller magnitude than `right`.
     public static func < (left: Vector3D, right: Vector3D) -> Bool {
         (~left < ~right)
     }
-    
+
+    /// Returns `true` if `left` has a strictly greater magnitude than `right`.
     public static func > (left: Vector3D, right: Vector3D) -> Bool {
         (~left > ~right)
     }
@@ -241,6 +259,7 @@ extension Vector3D {
 #if canImport(CoreMotion)
 import CoreMotion
 
+/// Core Motion extensions for constructing a `Vector3D` from acceleration, rotation rate, and magnetic field data.
 public extension Vector3D {
 
     /// Initializes a `Vector3D` from a `CMAcceleration`, converting from g-units to m/s².
@@ -272,6 +291,7 @@ public extension Vector3D {
 #if canImport(CoreLocation)
 import CoreLocation
 
+/// Core Location extension for constructing a `Vector3D` from a `CLHeading` magnetic field.
 public extension Vector3D {
 
     /// Initializes a `Vector3D` from the raw field values of a `CLHeading`.

@@ -67,6 +67,7 @@ public struct EulerAngles: CustomStringConvertible {
         self.yaw = yaw
     }
 
+    /// A human-readable description of the angles in degrees, e.g. `"EulerAngles[roll: 0.00, pitch: 0.00, yaw: 0.00]"`.
     public var description: String {
         return String(format: "EulerAngles[roll: %.2f, pitch: %.2f, yaw: %.2f]",
                       Float(roll.degrees), Float(pitch.degrees), Float(yaw.degrees))
@@ -76,6 +77,7 @@ public struct EulerAngles: CustomStringConvertible {
 #if canImport(CoreMotion)
 import CoreMotion
 
+/// Core Motion extension for constructing `EulerAngles` from a `CMAttitude`.
 public extension EulerAngles {
 
     /// Initializes an `EulerAngles` object using `CMAttitude` from Core Motion.

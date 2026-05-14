@@ -21,6 +21,7 @@ public enum MotionActivityStatus: CustomStringConvertible {
     /// The activity could not be determined.
     case unknown
 
+    /// A human-readable label for the activity, e.g. `"Walking"` or `"Unknown"`.
     public var description: String {
         switch self {
         case .walking:
@@ -42,6 +43,7 @@ public enum MotionActivityStatus: CustomStringConvertible {
 #if canImport(CoreMotion)
 import CoreMotion
 
+/// Core Motion extension for deriving `MotionActivityStatus` from a `CMMotionActivity` (macOS 15.0+).
 @available(macOS 15.0, *)
 public extension MotionActivityStatus {
 

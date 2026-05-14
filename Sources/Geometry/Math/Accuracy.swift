@@ -15,6 +15,7 @@ public enum Accuracy: Int, CustomStringConvertible {
     /// High accuracy.
     case high = 3
     
+    /// A human-readable label for the accuracy level, e.g. `"High"` or `"Unknown"`.
     public var description: String {
         switch self {
         case .none:
@@ -32,6 +33,7 @@ public enum Accuracy: Int, CustomStringConvertible {
 #if canImport(CoreMotion)
 import CoreMotion
 
+/// Core Motion extensions mapping `CMMagneticFieldCalibrationAccuracy` and `CMMotionActivity` to `Accuracy`.
 public extension Accuracy {
 
     /// Initializes `Accuracy` from `CMMagneticFieldCalibrationAccuracy`.
@@ -56,6 +58,7 @@ public extension Accuracy {
     }
 }
 
+/// Core Motion extensions mapping `CMMotionActivityConfidence` to `Accuracy` (macOS 15.0+).
 // CMMotionActivity is only available on macOS 15.0+
 @available(macOS 15.0, *)
 public extension Accuracy {

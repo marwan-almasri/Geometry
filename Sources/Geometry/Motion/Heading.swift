@@ -33,6 +33,7 @@ public struct Heading {
         self.field = field
     }
 
+    /// A multi-line description of all heading fields and the geomagnetic field vector.
     public var description: String {
         return """
         Heading {
@@ -48,6 +49,7 @@ public struct Heading {
 #if canImport(CoreLocation)
 import CoreLocation
 
+/// Core Location extension for constructing a `Heading` from a `CLHeading`.
 extension Heading {
     /// Initializes a `Heading` from a `CLHeading`.
     public init(heading: CLHeading) {

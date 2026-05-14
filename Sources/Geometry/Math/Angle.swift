@@ -8,7 +8,7 @@ import Foundation
 /// Angles lie in a plane but do not necessarily have to be in a Euclidean plane.
 /// - SeeAlso: [Wikipedia](https://en.wikipedia.org/wiki/Angle)
 public struct Angle {
-    
+
     /// The angle in radians.
     ///
     /// Radians are the standard unit of angular measure, equal to the arc length on the unit circle.
@@ -37,146 +37,141 @@ public struct Angle {
     }
 }
 
+/// `Equatable` and `Comparable` conformance for `Angle`, comparing in radian space.
 extension Angle: Equatable, Comparable {
+
+    /// Returns `true` if both angles have the same radian value.
     public static func == (lhs: Angle, rhs: Angle) -> Bool {
         lhs.radians == rhs.radians
     }
-    
+
+    /// Returns `true` if `lhs` is smaller than `rhs` in radian space.
     public static func < (lhs: Angle, rhs: Angle) -> Bool {
         lhs.radians < rhs.radians
     }
 }
 
+/// Angle constants and arithmetic operators.
 public extension Angle {
-    static var zero: Angle { Angle(radians: 0) }
-    
-    // MARK: - Arithmetic Operators
 
+    /// The zero angle (0 radians).
+    static var zero: Angle { Angle(radians: 0) }
+
+    // MARK: - Angle–Angle Operators
+
+    /// Negates the angle.
+    /// - Parameter angle: The angle to negate.
+    /// - Returns: An angle with the negated radian value.
     static prefix func - (angle: Angle) -> Angle {
         Angle(radians: -angle.radians)
     }
 
+    /// Returns the angle unchanged.
     static prefix func + (angle: Angle) -> Angle {
         angle
     }
-    
+
+    /// Adds two angles.
+    /// - Returns: The sum of the radian values as an `Angle`.
     static func + (lhs: Angle, rhs: Angle) -> Angle {
         Angle(radians: lhs.radians + rhs.radians)
     }
 
+    /// Subtracts one angle from another.
+    /// - Returns: The difference of the radian values as an `Angle`.
     static func - (lhs: Angle, rhs: Angle) -> Angle {
         Angle(radians: lhs.radians - rhs.radians)
     }
 
+    /// Multiplies two angles.
+    /// - Returns: The product of the radian values as an `Angle`.
     static func * (lhs: Angle, rhs: Angle) -> Angle {
         Angle(radians: lhs.radians * rhs.radians)
     }
 
+    /// Divides one angle by another.
+    /// - Returns: The quotient of the radian values as an `Angle`.
     static func / (lhs: Angle, rhs: Angle) -> Angle {
         Angle(radians: lhs.radians / rhs.radians)
     }
 
     // MARK: - Angle and Double
 
-    static func + (lhs: Angle, rhs: Double) -> Double {
-        lhs.radians + rhs
-    }
+    /// Adds an angle's radian value to a `Double`.
+    static func + (lhs: Angle, rhs: Double) -> Double { lhs.radians + rhs }
 
-    static func + (lhs: Double, rhs: Angle) -> Double {
-        lhs + rhs.radians
-    }
+    /// Adds a `Double` to an angle's radian value.
+    static func + (lhs: Double, rhs: Angle) -> Double { lhs + rhs.radians }
 
-    static func - (lhs: Angle, rhs: Double) -> Double {
-        lhs.radians - rhs
-    }
+    /// Subtracts a `Double` from an angle's radian value.
+    static func - (lhs: Angle, rhs: Double) -> Double { lhs.radians - rhs }
 
-    static func - (lhs: Double, rhs: Angle) -> Double {
-        lhs - rhs.radians
-    }
+    /// Subtracts an angle's radian value from a `Double`.
+    static func - (lhs: Double, rhs: Angle) -> Double { lhs - rhs.radians }
 
-    static func * (lhs: Angle, rhs: Double) -> Double {
-        lhs.radians * rhs
-    }
+    /// Multiplies an angle's radian value by a `Double`.
+    static func * (lhs: Angle, rhs: Double) -> Double { lhs.radians * rhs }
 
-    static func * (lhs: Double, rhs: Angle) -> Double {
-        lhs * rhs.radians
-    }
+    /// Multiplies a `Double` by an angle's radian value.
+    static func * (lhs: Double, rhs: Angle) -> Double { lhs * rhs.radians }
 
-    static func / (lhs: Angle, rhs: Double) -> Double {
-        lhs.radians / rhs
-    }
+    /// Divides an angle's radian value by a `Double`.
+    static func / (lhs: Angle, rhs: Double) -> Double { lhs.radians / rhs }
 
-    static func / (lhs: Double, rhs: Angle) -> Double {
-        lhs / rhs.radians
-    }
+    /// Divides a `Double` by an angle's radian value.
+    static func / (lhs: Double, rhs: Angle) -> Double { lhs / rhs.radians }
 
     // MARK: - Angle and Int
 
-    static func + (lhs: Angle, rhs: Int) -> Double {
-        lhs.radians + Double(rhs)
-    }
+    /// Adds an angle's radian value to an `Int` (converted to `Double`).
+    static func + (lhs: Angle, rhs: Int) -> Double { lhs.radians + Double(rhs) }
 
-    static func + (lhs: Int, rhs: Angle) -> Double {
-        Double(lhs) + rhs.radians
-    }
+    /// Adds an `Int` to an angle's radian value.
+    static func + (lhs: Int, rhs: Angle) -> Double { Double(lhs) + rhs.radians }
 
-    static func - (lhs: Angle, rhs: Int) -> Double {
-        lhs.radians - Double(rhs)
-    }
+    /// Subtracts an `Int` from an angle's radian value.
+    static func - (lhs: Angle, rhs: Int) -> Double { lhs.radians - Double(rhs) }
 
-    static func - (lhs: Int, rhs: Angle) -> Double {
-        Double(lhs) - rhs.radians
-    }
+    /// Subtracts an angle's radian value from an `Int`.
+    static func - (lhs: Int, rhs: Angle) -> Double { Double(lhs) - rhs.radians }
 
-    static func * (lhs: Angle, rhs: Int) -> Double {
-        lhs.radians * Double(rhs)
-    }
+    /// Multiplies an angle's radian value by an `Int`.
+    static func * (lhs: Angle, rhs: Int) -> Double { lhs.radians * Double(rhs) }
 
-    static func * (lhs: Int, rhs: Angle) -> Double {
-        Double(lhs) * rhs.radians
-    }
+    /// Multiplies an `Int` by an angle's radian value.
+    static func * (lhs: Int, rhs: Angle) -> Double { Double(lhs) * rhs.radians }
 
-    static func / (lhs: Angle, rhs: Int) -> Double {
-        lhs.radians / Double(rhs)
-    }
+    /// Divides an angle's radian value by an `Int`.
+    static func / (lhs: Angle, rhs: Int) -> Double { lhs.radians / Double(rhs) }
 
-    static func / (lhs: Int, rhs: Angle) -> Double {
-        Double(lhs) / rhs.radians
-    }
+    /// Divides an `Int` by an angle's radian value.
+    static func / (lhs: Int, rhs: Angle) -> Double { Double(lhs) / rhs.radians }
 
     // MARK: - Angle and Float
 
-    static func + (lhs: Angle, rhs: Float) -> Double {
-        lhs.radians + Double(rhs)
-    }
+    /// Adds an angle's radian value to a `Float` (converted to `Double`).
+    static func + (lhs: Angle, rhs: Float) -> Double { lhs.radians + Double(rhs) }
 
-    static func + (lhs: Float, rhs: Angle) -> Double {
-        Double(lhs) + rhs.radians
-    }
+    /// Adds a `Float` to an angle's radian value.
+    static func + (lhs: Float, rhs: Angle) -> Double { Double(lhs) + rhs.radians }
 
-    static func - (lhs: Angle, rhs: Float) -> Double {
-        lhs.radians - Double(rhs)
-    }
+    /// Subtracts a `Float` from an angle's radian value.
+    static func - (lhs: Angle, rhs: Float) -> Double { lhs.radians - Double(rhs) }
 
-    static func - (lhs: Float, rhs: Angle) -> Double {
-        Double(lhs) - rhs.radians
-    }
+    /// Subtracts an angle's radian value from a `Float`.
+    static func - (lhs: Float, rhs: Angle) -> Double { Double(lhs) - rhs.radians }
 
-    static func * (lhs: Angle, rhs: Float) -> Double {
-        lhs.radians * Double(rhs)
-    }
+    /// Multiplies an angle's radian value by a `Float`.
+    static func * (lhs: Angle, rhs: Float) -> Double { lhs.radians * Double(rhs) }
 
-    static func * (lhs: Float, rhs: Angle) -> Double {
-        Double(lhs) * rhs.radians
-    }
+    /// Multiplies a `Float` by an angle's radian value.
+    static func * (lhs: Float, rhs: Angle) -> Double { Double(lhs) * rhs.radians }
 
-    static func / (lhs: Angle, rhs: Float) -> Double {
-        lhs.radians / Double(rhs)
-    }
+    /// Divides an angle's radian value by a `Float`.
+    static func / (lhs: Angle, rhs: Float) -> Double { lhs.radians / Double(rhs) }
 
-    static func / (lhs: Float, rhs: Angle) -> Double {
-        Double(lhs) / rhs.radians
-    }
+    /// Divides a `Float` by an angle's radian value.
+    static func / (lhs: Float, rhs: Angle) -> Double { Double(lhs) / rhs.radians }
 }
 
 // MARK: - Trigonometry functions
@@ -224,6 +219,8 @@ func atan2(_ y: Double, _ x: Double) -> Angle {
     Foundation.atan2(y, x).angle
 }
 
+/// `Double` convenience extension for constructing an `Angle` from a radian value.
 public extension Double {
+    /// Wraps this `Double` value (in radians) as an `Angle`.
     var angle: Angle { .init(radians: self) }
 }

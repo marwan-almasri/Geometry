@@ -2,7 +2,33 @@ import Foundation
 
 /// Represents the horizontal direction on the XY plane.
 public enum HorizontalDirection: String, CaseIterable, Sendable {
-    case none, north, east, south, west, northEast, southEast, southWest, northWest
+
+    /// No horizontal component.
+    case none
+
+    /// North — positive Y axis (0°).
+    case north
+
+    /// East — positive X axis (90°).
+    case east
+
+    /// South — negative Y axis (180°).
+    case south
+
+    /// West — negative X axis (270°).
+    case west
+
+    /// North-east diagonal (45°).
+    case northEast
+
+    /// South-east diagonal (135°).
+    case southEast
+
+    /// South-west diagonal (225°).
+    case southWest
+
+    /// North-west diagonal (315°).
+    case northWest
 
     var shortLabel: String {
         switch self {
@@ -21,7 +47,15 @@ public enum HorizontalDirection: String, CaseIterable, Sendable {
 
 /// Represents the vertical direction on the Z axis.
 public enum VerticalDirection: String, CaseIterable, Sendable {
-    case none, up, down
+
+    /// No vertical component — horizontal plane.
+    case none
+
+    /// Upward — positive Z axis.
+    case up
+
+    /// Downward — negative Z axis.
+    case down
 
     var arrow: String {
         switch self {
@@ -33,26 +67,19 @@ public enum VerticalDirection: String, CaseIterable, Sendable {
 }
 
 /// Represents a 3D direction: horizontal (XY) and vertical (Z).
+///
+/// A `Direction` combines a `HorizontalDirection` with a `VerticalDirection` to form one of
+/// 27 discrete compass directions (8 horizontal × 3 vertical, plus horizontal-only, vertical-only,
+/// and the neutral "none").
 public struct Direction: Equatable, Sendable, CustomStringConvertible, CaseIterable {
 
+    /// The horizontal component of this direction.
     public let horizontal: HorizontalDirection
+
+    /// The vertical component of this direction.
     public let vertical: VerticalDirection
 
-    /// Default initializer
-    public init(horizontal: HorizontalDirection = .none, vertical: VerticalDirection = .none) {
-        self.horizontal = horizontal
-        self.vertical = vertical
-    }
-
-    /// Initialize from azimuth (ϕ) and elevation (θ)
-    ///
-    /// - Parameter theta: Vertical inclination angle (0 = Up, 90 = Horizontal, 180 = Down)
-    /// - Parameter phi: Azimuth angle in degrees (0 = North, 90 = East, etc.)
-    public init(theta: Angle = 90.0.angle, phi: Angle) {
-        vertical = Direction.verticalDirection(from: theta)
-        horizontal = Direction.horizontalDirection(from: phi)
-    }
-
+    /// A human-readable description of the direction, e.g. `"North Up (N↑)"`.
     public var description: String {
         let hDesc = horizontal == .none ? "" : horizontal.rawValue.capitalized
         let vDesc = vertical == .none ? "" : vertical.rawValue.capitalized
@@ -61,7 +88,25 @@ public struct Direction: Equatable, Sendable, CustomStringConvertible, CaseItera
         let short = [horizontal.shortLabel, vertical.arrow].joined()
         return desc.isEmpty ? "None" : "\(desc) (\(short))"
     }
-    
+
+    /// Default initializer.
+    /// - Parameter horizontal: Horizontal component. Defaults to `.none`.
+    /// - Parameter vertical: Vertical component. Defaults to `.none`.
+    public init(horizontal: HorizontalDirection = .none, vertical: VerticalDirection = .none) {
+        self.horizontal = horizontal
+        self.vertical = vertical
+    }
+
+    /// Initialize from azimuth (ϕ) and elevation (θ).
+    ///
+    /// - Parameter theta: Vertical inclination angle (0 = Up, 90 = Horizontal, 180 = Down).
+    /// - Parameter phi: Azimuth angle in degrees (0 = North, 90 = East, etc.).
+    public init(theta: Angle = 90.0.angle, phi: Angle) {
+        vertical = Direction.verticalDirection(from: theta)
+        horizontal = Direction.horizontalDirection(from: phi)
+    }
+
+    /// All 27 discrete directions, ordered from neutral through horizontal, then combined up and down variants.
     public static let allCases: [Direction] = [
         .none,
         .north,
@@ -94,41 +139,91 @@ public struct Direction: Equatable, Sendable, CustomStringConvertible, CaseItera
 
     // MARK: - Static Presets
 
+    /// No direction — neutral.
     public static let none = Direction()
+
+    /// North (0°, horizontal).
     public static let north = Direction(horizontal: .north)
+
+    /// East (90°, horizontal).
     public static let east = Direction(horizontal: .east)
+
+    /// South (180°, horizontal).
     public static let south = Direction(horizontal: .south)
+
+    /// West (270°, horizontal).
     public static let west = Direction(horizontal: .west)
+
+    /// Straight up (positive Z only).
     public static let up = Direction(vertical: .up)
+
+    /// Straight down (negative Z only).
     public static let down = Direction(vertical: .down)
 
     // MARK: - Horizontal Intercardinal Directions
 
+    /// North-east (45°, horizontal).
     public static let northEast = Direction(horizontal: .northEast)
+
+    /// South-east (135°, horizontal).
     public static let southEast = Direction(horizontal: .southEast)
+
+    /// South-west (225°, horizontal).
     public static let southWest = Direction(horizontal: .southWest)
+
+    /// North-west (315°, horizontal).
     public static let northWest = Direction(horizontal: .northWest)
 
     // MARK: - Vertical Up Directions
 
+    /// North and up.
     public static let northUp = Direction(horizontal: .north, vertical: .up)
+
+    /// North-east and up.
     public static let northEastUp = Direction(horizontal: .northEast, vertical: .up)
+
+    /// East and up.
     public static let eastUp = Direction(horizontal: .east, vertical: .up)
+
+    /// South-east and up.
     public static let southEastUp = Direction(horizontal: .southEast, vertical: .up)
+
+    /// South and up.
     public static let southUp = Direction(horizontal: .south, vertical: .up)
+
+    /// South-west and up.
     public static let southWestUp = Direction(horizontal: .southWest, vertical: .up)
+
+    /// West and up.
     public static let westUp = Direction(horizontal: .west, vertical: .up)
+
+    /// North-west and up.
     public static let northWestUp = Direction(horizontal: .northWest, vertical: .up)
 
     // MARK: - Vertical Down Directions
 
+    /// North and down.
     public static let northDown = Direction(horizontal: .north, vertical: .down)
+
+    /// North-east and down.
     public static let northEastDown = Direction(horizontal: .northEast, vertical: .down)
+
+    /// East and down.
     public static let eastDown = Direction(horizontal: .east, vertical: .down)
+
+    /// South-east and down.
     public static let southEastDown = Direction(horizontal: .southEast, vertical: .down)
+
+    /// South and down.
     public static let southDown = Direction(horizontal: .south, vertical: .down)
+
+    /// South-west and down.
     public static let southWestDown = Direction(horizontal: .southWest, vertical: .down)
+
+    /// West and down.
     public static let westDown = Direction(horizontal: .west, vertical: .down)
+
+    /// North-west and down.
     public static let northWestDown = Direction(horizontal: .northWest, vertical: .down)
 
     // MARK: - Angle Helpers

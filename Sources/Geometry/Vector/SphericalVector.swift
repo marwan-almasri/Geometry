@@ -68,6 +68,7 @@ public struct SphericalVector: CustomStringConvertible {
 
     // MARK: - CustomStringConvertible
 
+    /// A compact description of the spherical components, e.g. `"Spherical(1.00, 45.00˚, 90.00˚)"`.
     public var description: String {
         return String(format: "Spherical(%.2f, %.2f˚, %.2f˚)",
                       Float(radial),

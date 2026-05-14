@@ -65,6 +65,7 @@ public struct Quaternion: CustomStringConvertible {
         self.w = w
     }
 
+    /// A human-readable description of the quaternion components, e.g. `"Quaternion(0.00, 0.00, 0.00, 1.00)"`.
     public var description: String {
         return String(format: "Quaternion(%.2f, %.2f, %.2f, %.2f)", Float(x), Float(y), Float(z), Float(w))
     }
@@ -73,6 +74,7 @@ public struct Quaternion: CustomStringConvertible {
 #if canImport(CoreMotion)
 import CoreMotion
 
+/// Core Motion extension for constructing a `Quaternion` from a `CMQuaternion`.
 public extension Quaternion {
 
     /// Initializes a quaternion using `CMQuaternion` from Core Motion.

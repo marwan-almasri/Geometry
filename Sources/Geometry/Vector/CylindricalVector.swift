@@ -68,6 +68,7 @@ public struct CylindricalVector: CustomStringConvertible {
 
     // MARK: - CustomStringConvertible
 
+    /// A compact description of the cylindrical components, e.g. `"Cylindrical(1.00, 45.00˚, 2.00)"`.
     public var description: String {
         return String(format: "Cylindrical(%.2f, %.2f˚, %.2f)",
                       Float(rho),

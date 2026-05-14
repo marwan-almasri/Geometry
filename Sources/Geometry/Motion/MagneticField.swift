@@ -22,6 +22,7 @@ public struct MagneticField {
         self.accuracy = accuracy
     }
 
+    /// A multi-line description showing the accuracy level and the field vector.
     public var description: String {
         return """
         MagneticField with accuracy \(accuracy) {
@@ -34,6 +35,7 @@ public struct MagneticField {
 #if canImport(CoreMotion)
 import CoreMotion
 
+/// Core Motion extension for constructing a `MagneticField` from a `CMCalibratedMagneticField`.
 public extension MagneticField {
 
     /// Initializes a magnetic field from a `CMCalibratedMagneticField` object (iOS only).

@@ -5,14 +5,23 @@ import Foundation
 /// In linear algebra, a rotation matrix is used to perform rotations in Euclidean space.
 public struct RotationMatrix: CustomStringConvertible {
 
+    /// Row 1, column 1 element.
     public let m11: Double
+    /// Row 1, column 2 element.
     public let m12: Double
+    /// Row 1, column 3 element.
     public let m13: Double
+    /// Row 2, column 1 element.
     public let m21: Double
+    /// Row 2, column 2 element.
     public let m22: Double
+    /// Row 2, column 3 element.
     public let m23: Double
+    /// Row 3, column 1 element.
     public let m31: Double
+    /// Row 3, column 2 element.
     public let m32: Double
+    /// Row 3, column 3 element.
     public let m33: Double
 
     /// Converts the rotation matrix to Euler angles.
@@ -80,6 +89,7 @@ public struct RotationMatrix: CustomStringConvertible {
         self.m31 = m31; self.m32 = m32; self.m33 = m33
     }
 
+    /// A formatted 3×3 matrix string showing all nine elements.
     public var description: String {
         return String(format: """
         RotationMatrix:
@@ -93,6 +103,7 @@ public struct RotationMatrix: CustomStringConvertible {
 #if canImport(CoreMotion)
 import CoreMotion
 
+/// Core Motion extension for constructing a `RotationMatrix` from a `CMRotationMatrix`.
 public extension RotationMatrix {
 
     /// Initializes a `RotationMatrix` using `CMRotationMatrix` from Core Motion.

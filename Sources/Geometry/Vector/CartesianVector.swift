@@ -60,6 +60,7 @@ public struct CartesianVector: CustomStringConvertible {
 
     // MARK: - CustomStringConvertible
 
+    /// A compact description of the Cartesian components, e.g. `"Cartesian(1.00, 2.00, 3.00)"`.
     public var description: String {
         return String(format: "Cartesian(%.2f, %.2f, %.2f)", Float(x), Float(y), Float(z))
     }

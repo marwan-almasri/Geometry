@@ -20,7 +20,10 @@
       "Bash(jazzy --swift-build-tool symbolgraph)",
       "Bash(jazzy --swift-build-tool symbolgraph --build-tool-arguments -I,.build/debug/Modules)",
       "Bash(open *)",
-      "Bash(git -C /Users/maralmasri/Developer/Private/Geometry status --short)"
+      "Bash(git -C /Users/maralmasri/Developer/Private/Geometry status --short)",
+      "Bash(python3 -c \"import json,sys; data=json.load\\(sys.stdin\\); [print\\(w['file'].split\\('/'\\)[-1], w['symbol'], w['symbol_kind']\\) for w in data.get\\('warnings',[]\\)]\")",
+      "Bash(python3 -c ' *)",
+      "Bash(python3 *)"
     ]
   }
 }
